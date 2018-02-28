@@ -278,7 +278,7 @@ list of entries where the key represents a class name, and the value is one
 of either 'class', 'abstract', or 'interface'.
 
 The 'class' entry indicates a fully fledged class. That is, the class is
-tested to ensure it has been loaded, and the existance of every method listed
+tested to ensure it has been loaded, and the existence of every method listed
 in the section ( and its superclasses ) is tested for.
 
 The 'abstract' entry indicates an abstract class, one which is part of our
@@ -295,7 +295,7 @@ classes that inherit from it. For example, if a class inherits from, and
 implements, the File::Handle interface, a C<File::Handle=interface> entry
 could be added, with the C<[File::Handle]> section listing all the methods
 in File::Handle that our class tree actually cares about. No tests, for class
-or method existance, are done on the interface itself.
+or method existence, are done on the interface itself.
 
 =head2 Class Sections
 
@@ -305,10 +305,10 @@ is the name of something to test, and the value is the type of test for it.
 
 The 'isa' test checks inheritance, to make sure that the class the section is
 for is (by some path) a sub-class of something else. This does not have to be
-an immediate sub-class. Any class refered to (recursively) in a 'isa' test
+an immediate sub-class. Any class referred to (recursively) in a 'isa' test
 will have its 'method' test entries applied to the class as well.
 
-The 'method' test is a simple method existance test, using C<UNIVERSAL::can>
+The 'method' test is a simple method existence test, using C<UNIVERSAL::can>
 to make sure that the method exists in the class.
 
 =head1 METHODS
