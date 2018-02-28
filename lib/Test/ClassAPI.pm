@@ -60,7 +60,7 @@ sub init {
 
 	# Use the script's DATA handle or one passed
 	*DATA = ref($_[0]) eq 'GLOB' ? shift : *main::DATA;
- 
+
 	# Read in all the data, and create the config object
 	local $/ = undef;
 	$CONFIG = Config::Tiny->read_string( <DATA> )
@@ -77,7 +77,6 @@ sub init {
 			$SCHEDULE->{$test} ||= 'interface';
 		}
 	}
-	
 
 	# Check the schedule information
 	foreach my $tclass ( keys %$SCHEDULE ) {
@@ -150,7 +149,7 @@ sub execute {
 					print "# Warning: Unknown test type '$type'";
 					next;
 				}
-				
+
 				# When we 'implement' a class or interface,
 				# we need to check the 'method' tests within
 				# it, but not anything else. So we will add
@@ -232,31 +231,31 @@ Test::ClassAPI is used with a fairly standard looking test script, with the
 API description contained in a __DATA__ section at the end of the script.
 
   #!/usr/bin/perl
-  
+
   # Test the API for Foo::Bar
   use strict;
   use Test::More 'tests' => 123; # Optional
   use Test::ClassAPI;
-  
+
   # Load the API to test
   use Foo::Bar;
-  
+
   # Execute the tests
   Test::ClassAPI->execute;
-  
+
   __DATA__
-  
+
   Foo::Bar::Thing=interface
   Foo::Bar::Object=abstract
   Foo::Bar::Planet=class
-  
+
   [Foo::Bar::Thing]
   foo=method
-  
+
   [Foo::Bar::Object]
   bar=method
   whatsit=method
-  
+
   [Foo::Bar::Planet]
   Foo::Bar::Object=isa
   Foo::Bar::Thing=isa
@@ -286,12 +285,12 @@ The 'abstract' entry indicates an abstract class, one which is part of our
 class tree, and needs to exist, but is never instantiated directly, and thus
 does not have to itself implement all of the methods listed for it. Generally,
 many individual 'class' entries will inherit from an 'abstract', and thus a
-method listed in the abstract's section will be tested for in all the 
+method listed in the abstract's section will be tested for in all the
 subclasses of it.
 
 The 'interface' entry indicates an external interface that is not part of
 our class tree, but is inherited from by one or more of our classes, and thus
-the methods listed in the interface's section are tested for in all the 
+the methods listed in the interface's section are tested for in all the
 classes that inherit from it. For example, if a class inherits from, and
 implements, the File::Handle interface, a C<File::Handle=interface> entry
 could be added, with the C<[File::Handle]> section listing all the methods

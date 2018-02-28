@@ -32,7 +32,7 @@ SCOPE: {
 	sub write        {1}
 	sub write_string {1}
 	sub errstr       {1}
-	
+
 	sub foo          {1}
 
 	1;
